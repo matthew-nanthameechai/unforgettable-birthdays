@@ -4,7 +4,6 @@ function App() {
   return (
     <>
       <div className="app">
-        <h1>Unforgettable Birthdays</h1>
         <BirthdayList />
       </div>
     </>

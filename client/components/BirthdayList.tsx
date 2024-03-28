@@ -1,5 +1,6 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Birthday } from '../../models/birthday'
+import { Link } from 'react-router-dom'
 
 const birthdays = [
   {
@@ -21,11 +22,14 @@ function BirthdayList() {
     <>
       {birthdays.map((birthday) => {
         return (
-          <p key={birthday.id}>
-            Name: {birthday.name} - {birthday.day}/{birthday.month}
-          </p>
+          <>
+            <p key={birthday.id}>
+              Name: {birthday.name} - {birthday.day}/{birthday.month}
+            </p>
+          </>
         )
       })}
+      <Link to="/form">Add your own birthday</Link>
     </>
   )
 }
