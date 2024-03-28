@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Birthday } from '../../models/birthday'
+import { Birthday, BirthdayData } from '../../models/birthday'
 
 const rootUrl = '/api/v1/birthdays'
 
@@ -9,6 +9,6 @@ export function getBirthDays(): Promise<Birthday[]> {
   })
 }
 
-export async function addBirthday(newBirthday: Birthday): Promise<void> {
+export async function addBirthday(newBirthday: BirthdayData): Promise<void> {
   await request.post(rootUrl).send(newBirthday)
 }

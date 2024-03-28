@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getBirthDays, addBirthday } from '../apis/apiClient'
-import { Birthday } from '../../models/birthday'
+import { Birthday, BirthdayData } from '../../models/birthday'
 
 export function useGetBirthdays() {
   return useQuery({
@@ -12,7 +12,7 @@ export function useGetBirthdays() {
 export function useAddBirthday() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (newBirthday: Birthday) => addBirthday(newBirthday),
+    mutationFn: async (newBirthday: BirthdayData) => addBirthday(newBirthday),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['birthdays'],
