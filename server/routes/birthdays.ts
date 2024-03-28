@@ -14,11 +14,11 @@ router.get('/', async (req, res) => {
 })
 
 // adds a new birthday
-router.post('/post', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const birthday = req.body
     await db.addBirthday(birthday)
-    res.sendStatus(200).json({ message: `Data was succesfully sent` })
+    res.sendStatus(200)
   } catch (error) {
     res.status(500).json({ message: `Something went wrong ${error}` })
   }
@@ -45,7 +45,19 @@ router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
     await db.deleteBirthdayById(id)
-    res.sendStatus(200).json({ message: `Data was succesfully deleted` })
+    res.sendStatus(200)
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong ${error}` })
+  }
+})
+
+// updates by id
+router.put('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  const birthday = req.body
+  try {
+    await db.updateBirthday(id, birthday)
+    res.sendStatus(200)
   } catch (error) {
     res.status(500).json({ message: `Something went wrong ${error}` })
   }

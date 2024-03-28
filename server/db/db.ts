@@ -18,9 +18,9 @@ export async function addBirthday(
 // update
 export async function updateBirthday(
   id: number,
-  birthday: Birthday,
+  birthday: BirthdayData,
 ): Promise<Birthday[]> {
-  return db('birthdays').select()
+  return db('birthdays').where({ id }).update(birthday)
 }
 
 // delete
