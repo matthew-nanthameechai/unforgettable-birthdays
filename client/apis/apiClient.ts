@@ -8,3 +8,7 @@ export function getBirthDays(): Promise<Birthday[]> {
     return res.body
   })
 }
+
+export async function addBirthday(newBirthday: Birthday): Promise<void> {
+  await request.post(rootUrl).send(newBirthday)
+}
