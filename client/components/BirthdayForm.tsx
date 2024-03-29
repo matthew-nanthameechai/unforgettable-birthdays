@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-
+import EasterEggSound from '../../audio/easteregg.mp3'
 import { useAddBirthday } from '../hooks/useBirthdays'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ function BirthdayForm() {
   const [newName, setNewName] = useState('')
   const [newMonth, setNewMonth] = useState('')
   const [newDay, setNewDay] = useState('')
-  
+
   const addBirthday = useAddBirthday()
   const navigate = useNavigate()
 
@@ -26,15 +26,26 @@ function BirthdayForm() {
   const day = Number(newDay)
   const month = Number(newMonth)
 
-  const handleSubmit = useCallback( async (e: React.FormEvent) => {
-    console.log(newName, month, day)
-    e.preventDefault()
-    addBirthday.mutate({ name: newName, day, month })
-    setNewName('')
-    setNewDay('')
-    setNewMonth('')
-    navigate('/')
-  }, [addBirthday, day, month, navigate, newName])
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      console.log(newName, month, day)
+      e.preventDefault()
+      addBirthday.mutate({ name: newName, day, month })
+      setNewName('')
+      setNewDay('')
+      setNewMonth('')
+      navigate('/')
+    },
+    [addBirthday, day, month, navigate, newName],
+  )
+
+  const buttons = document.querySelectorAll('button')
+  const audio = new Audio(EasterEggSound)
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      audio.play()
+    })
+  })
 
   return (
     <>
@@ -72,10 +83,8 @@ function BirthdayForm() {
         </div>
         <button>Submit</button>
       </form>
-    
     </>
   )
 }
 
 export default BirthdayForm
-
