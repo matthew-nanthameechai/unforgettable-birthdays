@@ -11,13 +11,18 @@ export default function Layout() {
   })
   return (
     <>
-      <h1 className="title">Unforgettable Birthdays</h1>
-      <button>
-        <Link className="nav" to="/">
-          Home
-        </Link>
-      </button>
-      <Outlet />
+      <div className="top-container">
+        <h1 className="title">Unforgettable Birthdays</h1>
+        <button>
+          <Link className="nav" to="/">
+            Home
+          </Link>
+        </button>
+        <button>
+          <Link to="/form">Add your own birthday</Link>
+        </button>
+        <Outlet />
+      </div>
     </>
   )
 }

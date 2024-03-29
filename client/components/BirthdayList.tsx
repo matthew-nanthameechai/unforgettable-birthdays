@@ -46,15 +46,16 @@ function BirthdayList() {
       {birthdays?.map((birthday) => {
         return (
           <>
-            <p key={birthday.id}>
-              Name: {birthday.name} - {birthday.day}/{birthday.month}
-            </p>
+            <div className="birthday-container">
+              <div className="birthday">
+                <p key={birthday.id}>
+                  Name: {birthday.name} - {birthday.day}/{birthday.month}
+                </p>
+              </div>
+            </div>
           </>
         )
       })}
-      <button>
-        <Link to="/form">Add your own birthday</Link>
-      </button>
     </>
   )
 }
