@@ -2,6 +2,7 @@
 // import { Birthday } from '../../models/birthday'
 import { Link } from 'react-router-dom'
 import { useGetBirthdays } from '../hooks/useBirthdays'
+import EasterEggSound from '../../audio/easteregg.mp3'
 
 // const birthdays = [
 //   {
@@ -20,6 +21,13 @@ import { useGetBirthdays } from '../hooks/useBirthdays'
 
 function BirthdayList() {
   const { data: birthdays, isPending, isError, error } = useGetBirthdays()
+  const buttons = document.querySelectorAll('button')
+  const audio = new Audio(EasterEggSound)
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      audio.play()
+    })
+  })
 
   if (isPending) {
     return <p>Loading...</p>
@@ -35,15 +43,14 @@ function BirthdayList() {
   }
   return (
     <>
-      
       {birthdays?.map((birthday) => {
         return (
           <>
             <div className="birthday-container">
-              <div className='birthday'>
+              <div className="birthday">
                 <p key={birthday.id}>
-                Name: {birthday.name} - {birthday.day}/{birthday.month}
-              </p>
+                  Name: {birthday.name} - {birthday.day}/{birthday.month}
+                </p>
               </div>
             </div>
           </>
