@@ -71,7 +71,7 @@ function BirthdayForm() {
         </div>
         <button>Submit</button>
       </form>
-      <p>This will be a form eventually</p>
+    
     </>
   )
 }
