@@ -5,7 +5,7 @@ const db = connection
 
 // Get all Birthdays
 export async function getAllBirthdays(): Promise<Birthday[]> {
-  return db('birthdays').select()
+  return db('birthdays').select().orderBy('month').orderBy('day')
 }
 
 // add
