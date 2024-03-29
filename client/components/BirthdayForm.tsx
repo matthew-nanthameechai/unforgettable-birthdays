@@ -1,15 +1,15 @@
 import { useCallback, useState } from 'react'
-import { BirthdayData } from '../../models/birthday'
+
 import { useAddBirthday } from '../hooks/useBirthdays'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function BirthdayForm() {
   const [newName, setNewName] = useState('')
   const [newMonth, setNewMonth] = useState('')
   const [newDay, setNewDay] = useState('')
-  const [newBirthday, setNewBirthday] = useState('')
+  
   const addBirthday = useAddBirthday()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleNameChange = (e: React.ChangeEvent) => {
     setNewName(e.target.value)
@@ -26,21 +26,22 @@ function BirthdayForm() {
   const day = Number(newDay)
   const month = Number(newMonth)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback( async (e: React.FormEvent) => {
     console.log(newName, month, day)
     e.preventDefault()
     addBirthday.mutate({ name: newName, day, month })
     setNewName('')
     setNewDay('')
     setNewMonth('')
-  }
+    navigate('/')
+  }, [addBirthday, day, month, navigate, newName])
 
   return (
     <>
       <h2>Add your Birthday</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name: </label>
           <input
             value={newName}
             name=""
@@ -50,7 +51,7 @@ function BirthdayForm() {
           />
         </div>
         <div>
-          <label htmlFor="day">Day:</label>
+          <label htmlFor="day">Day: </label>
           <input
             value={newDay}
             name="day"
@@ -60,7 +61,7 @@ function BirthdayForm() {
           />
         </div>
         <div>
-          <label htmlFor="month">Month:</label>
+          <label htmlFor="month">Month: </label>
           <input
             value={newMonth}
             name="month"
@@ -78,34 +79,3 @@ function BirthdayForm() {
 
 export default BirthdayForm
 
-// function AddTodo() {
-//   const [newTodo, setNewTodo] = useState('')
-//   const mutation = useAddTodo()
-
-//   const handleChange = (e: React.ChangeEvent) => {
-//     setNewTodo(e.target.value)
-//   }
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     console.log(newTodo)
-//     e.preventDefault()
-//     mutation.mutate({name: newTodo})
-//     setNewTodo('')
-//   }
-
-//   return (
-//     <>
-//       <div>
-//         <form onSubmit={handleSubmit}>
-//           <input
-//             onChange={handleChange}
-//             value={newTodo}
-//             className="new-todo"
-//             placeholder="What needs to be done?"
-//             autoFocus={true}
-//           />
-//         </form>
-//       </div>
-//     </>
-//   )
-// }
