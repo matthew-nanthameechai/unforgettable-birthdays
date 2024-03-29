@@ -40,7 +40,7 @@ function BirthdayForm() {
     <>
       <h2>Add your Birthday</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='input-box'>
           <label htmlFor="name">Name: </label>
           <input
             value={newName}
@@ -50,7 +50,7 @@ function BirthdayForm() {
             onChange={handleNameChange}
           />
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="day">Day: </label>
           <input
             value={newDay}
@@ -60,7 +60,7 @@ function BirthdayForm() {
             onChange={handleDayChange}
           />
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="month">Month: </label>
           <input
             value={newMonth}
