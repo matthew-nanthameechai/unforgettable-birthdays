@@ -7,5 +7,8 @@ export async function seed(knex) {
   await knex('birthdays').del()
   await knex('birthdays').insert([
     { id: 1, name: 'Matthew', day: '5', month: '12' },
+    { id: 2, name: 'Ben', day: '22', month: '2' },
+    { id: 3, name: 'Alyssa', day: '17', month: '11' },
+    { id: 4, name: 'Taua', day: '6', month: '9' },
   ])
 }
